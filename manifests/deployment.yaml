@@ -14,7 +14,7 @@ spec:
       spec:
         containers:
         - name: captureorder
-          image: uniqueacrname.azurecr.io/captureorder:placeholdertag # replace with your own repository. Due to a bug, leave the :placeholdertag tag in there to allow the pipeline to replace it
+          image: bencaks1.azurecr.io/captureorder:placeholdertag # replace with your own repository. Due to a bug, leave the :placeholdertag tag in there to allow the pipeline to replace it
           imagePullPolicy: Always
           readinessProbe:
             httpGet:
@@ -35,10 +35,7 @@ spec:
           - name: TEAMNAME
             value: 'team-azch' # will be patched at deployment time by value of 'teamName' in the variable group
           - name: MONGOHOST
-            valueFrom:
-              secretKeyRef:
-                name: mongodb
-                key: mongoHost
+            value: orders-mongo-mongodb.default.svc.cluster.local
           - name: MONGOUSER
             valueFrom:
               secretKeyRef:
